@@ -2,5 +2,8 @@
 <resources>
     <declare-styleable name="PlayingIcon">
         <attr name="color" format="color" />
+        <attr name="num" format="integer" />
+        <attr name="speed" format="integer" />
+        <attr name="spaceRatio" format="float" />
     </declare-styleable>
 </resources>

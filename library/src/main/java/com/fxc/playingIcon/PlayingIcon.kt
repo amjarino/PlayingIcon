@@ -2,9 +2,9 @@ package com.fxc.playingIcon
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
-import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import java.util.*
@@ -16,6 +16,15 @@ import kotlin.math.sin
  * @date 2018/3/21
  */
 class PlayingIcon : View {
+
+	companion object {
+		private const val DEFAULT_SPEED = 16L
+		private const val DEFAULT_COLOR = Color.RED
+		private const val DEFAULT_NUM = 4
+		private const val DEFAULT_SPACE_RATIO = 0.4f
+
+	}
+
 	constructor(context: Context) : super(context)
 	constructor(context: Context, attrs: AttributeSet) : this(context, attrs, 0)
 	constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
@@ -23,11 +32,31 @@ class PlayingIcon : View {
 	}
 
 	private fun initAttr(attrs: AttributeSet) {
-		mPaint = Paint()
-		mPaint.color = ContextCompat.getColor(context, R.color.blank)
-//		val array = context.obtainStyledAttributes(attrs, R.styleable.PlayingIcon)
-//		array.recycle()
+
+		val array = context.obtainStyledAttributes(attrs, R.styleable.PlayingIcon)
+		val num = array.indexCount
+		(0 until num)
+				.map { array.getIndex(it) }
+				.forEach {
+			when (it) {
+				R.styleable.PlayingIcon_color ->
+					color = array.getColor(it, DEFAULT_COLOR)
+				R.styleable.PlayingIcon_num ->
+					pointNum = array.getInt(it, DEFAULT_NUM)
+				R.styleable.PlayingIcon_speed ->
+					speed = array.getInt(it, DEFAULT_SPEED.toInt()).toLong()
+				R.styleable.PlayingIcon_spaceRatio ->
+						spaceRatio = array.getFloat(it, DEFAULT_SPACE_RATIO)
+			}
+		}
+		array.recycle()
 		createPoints(pointNum)
+		createPaint()
+	}
+
+	private fun createPaint() {
+		mPaint = Paint()
+		mPaint.color = color
 	}
 
 	private fun createPoints(size: Int) {
@@ -44,7 +73,9 @@ class PlayingIcon : View {
 	private var basePointY = 0f
 	private var pointMargin = 0f
 	private var pointWidth = 0f
-	private var spaceRatio = 0.4f
+	private var spaceRatio = DEFAULT_SPACE_RATIO
+	private var color = DEFAULT_COLOR
+	private var speed = DEFAULT_SPEED
 
 	private val random = Random()
 
@@ -88,7 +119,7 @@ class PlayingIcon : View {
 		}
 		postDelayed({
 			invalidate()
-		}, 16)
+		}, speed)
 	}
 
 	private fun getWidthWithoutPadding(): Int {

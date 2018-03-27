@@ -18,6 +18,8 @@
     <com.fxc.playingIcon.PlayingIcon
         android:layout_width="100dp"
         android:padding="20dp"
+        app:spaceRatio="0.1"
+        app:color="@color/colorPrimary"
         android:layout_height="100dp" />
 
 </android.support.constraint.ConstraintLayout>
