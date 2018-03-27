@@ -127,7 +127,7 @@ class PlayingIcon : View {
 	}
 
 	private fun getHeightWithoutPadding(): Int {
-		return height - paddingBottom
+		return height - paddingBottom - paddingTop
 	}
 
 	/**
