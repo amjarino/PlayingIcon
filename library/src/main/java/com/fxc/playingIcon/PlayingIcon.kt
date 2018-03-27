@@ -95,7 +95,7 @@ class PlayingIcon : View {
 		for (point in pointers) {
 			var ratio = (0.1 * random.nextInt(10)).toFloat()
 			var delta = abs(ratio - lastRatio)
-			while (lastRatio != 0f && !(1 / 4 < delta && delta < 0.25 * 3)) {
+			while (lastRatio != 0f && !(0.25 < delta && delta < 0.25 * 3)) {
 				ratio = (0.1 * random.nextInt(10)).toFloat()
 				delta = abs(ratio - lastRatio)
 			}
