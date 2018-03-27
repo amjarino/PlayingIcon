@@ -68,14 +68,14 @@ class PlayingIcon : View {
 
 	private lateinit var mPaint: Paint
 	private val pointers = ArrayList<Pointer>()
-	private var pointNum = 4
 	private var basePointX = 0f
 	private var basePointY = 0f
 	private var pointMargin = 0f
 	private var pointWidth = 0f
-	private var spaceRatio = DEFAULT_SPACE_RATIO
-	private var color = DEFAULT_COLOR
-	private var speed = DEFAULT_SPEED
+	var spaceRatio = DEFAULT_SPACE_RATIO
+	var color = DEFAULT_COLOR
+	var speed = DEFAULT_SPEED
+	var pointNum = DEFAULT_NUM
 
 	private val random = Random()
 
