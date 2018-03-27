@@ -6,7 +6,6 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import java.util.*
 import kotlin.math.abs
@@ -66,7 +65,6 @@ class PlayingIcon : View {
 			var ratio = (0.1 * random.nextInt(10)).toFloat()
 			var delta = abs(ratio - lastRatio)
 			while (lastRatio != 0f && !(1 / 4 < delta && delta < 0.25 * 3)) {
-				Log.d("wadsdc", "delta $delta < ${1 / 4 < delta} > ${delta < 0.25 * 3}")
 				ratio = (0.1 * random.nextInt(10)).toFloat()
 				delta = abs(ratio - lastRatio)
 			}
@@ -85,7 +83,6 @@ class PlayingIcon : View {
 		super.onDraw(canvas)
 		for (point in pointers) {
 			canvas.drawRect(point.rectF, mPaint)
-			Log.d("qwdas", "point $point  height ${getHeightWithoutPadding()} top ${point.top}")
 			point.ratio += 0.1f
 			point.top = abs(sin(point.ratio)) * getHeightWithoutPadding() + paddingTop
 		}
@@ -99,7 +96,6 @@ class PlayingIcon : View {
 	}
 
 	private fun getHeightWithoutPadding(): Int {
-		Log.d("qwda", "height $height paT $paddingTop pb $paddingBottom")
 		return height - paddingBottom
 	}
 
@@ -111,7 +107,6 @@ class PlayingIcon : View {
 	 */
 	private fun getItemWidth(ratio: Float, num: Int): FloatArray {
 		val itemWidth = getWidthWithoutPadding() / ((ratio + 1) * num - ratio)
-		Log.d("qwdasd", "getItemWidth radio $ratio itemWidth $itemWidth  width ${getWidthWithoutPadding()}")
 		return floatArrayOf(itemWidth, itemWidth * ratio)
 	}
 
