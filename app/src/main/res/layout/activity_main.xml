@@ -16,9 +16,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.fxc.playingIcon.PlayingIcon
-        android:layout_width="50dp"
+        android:id="@+id/icon"
+        android:layout_width="match_parent"
         android:padding="20dp"
         app:color="@color/colorPrimary"
-        android:layout_height="50dp" />
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>

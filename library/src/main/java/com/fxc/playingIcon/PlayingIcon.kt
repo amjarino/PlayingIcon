@@ -76,6 +76,11 @@ class PlayingIcon : View {
 	var color = DEFAULT_COLOR
 	var speed = DEFAULT_SPEED
 	var pointNum = DEFAULT_NUM
+	var run = false
+		set(value) {
+			field = value
+			invalidate()
+		}
 
 	private val random = Random()
 
@@ -102,7 +107,7 @@ class PlayingIcon : View {
 			point.ratio = ratio
 			point.left = basePointX
 			point.right = basePointX + pointWidth
-			point.top = abs(sin(point.ratio)) * getHeightWithoutPadding()
+			point.top = abs(sin(point.ratio)) * getHeightWithoutPadding() + paddingTop
 			point.bottom = basePointY
 			basePointX += pointMargin + pointWidth
 			lastRatio = point.ratio
@@ -116,6 +121,9 @@ class PlayingIcon : View {
 			canvas.drawRect(point.rectF, mPaint)
 			point.ratio += 0.1f
 			point.top = abs(sin(point.ratio)) * getHeightWithoutPadding() + paddingTop
+		}
+		if (!run) {
+			return
 		}
 		postDelayed({
 			invalidate()
