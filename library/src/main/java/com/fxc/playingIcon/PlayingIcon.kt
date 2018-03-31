@@ -22,6 +22,7 @@ class PlayingIcon : View {
 		private const val DEFAULT_COLOR = Color.RED
 		private const val DEFAULT_NUM = 4
 		private const val DEFAULT_SPACE_RATIO = 0.4f
+		private const val DEFAULT_IS_RUN = true
 
 	}
 
@@ -47,6 +48,8 @@ class PlayingIcon : View {
 					speed = array.getInt(it, DEFAULT_SPEED.toInt()).toLong()
 				R.styleable.PlayingIcon_spaceRatio ->
 						spaceRatio = array.getFloat(it, DEFAULT_SPACE_RATIO)
+				R.styleable.PlayingIcon_startWithRun ->
+						run = array.getBoolean(it, DEFAULT_IS_RUN)
 			}
 		}
 		array.recycle()
@@ -76,7 +79,7 @@ class PlayingIcon : View {
 	var color = DEFAULT_COLOR
 	var speed = DEFAULT_SPEED
 	var pointNum = DEFAULT_NUM
-	var run = false
+	var run = DEFAULT_IS_RUN
 		set(value) {
 			field = value
 			invalidate()
